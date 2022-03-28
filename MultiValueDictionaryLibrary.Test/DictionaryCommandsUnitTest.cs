@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using Moq;
+using MultiValueDictionaryLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,14 +13,16 @@ namespace MultiValueDictionaryLibrary.Test
 {
     public class DictionaryCommandsUnitTest
     {
+        private readonly Mock<IWritingService> _mockWritingService;
 
         public DictionaryCommandsUnitTest()
         {
+            _mockWritingService = new Mock<IWritingService>();
         }
 
         private DictionaryCommands BuildMockInstance()
         {
-            return new DictionaryCommands();
+            return new DictionaryCommands(_mockWritingService.Object);
         }
 
         [Fact]
@@ -72,7 +76,7 @@ namespace MultiValueDictionaryLibrary.Test
                 //assert
                 stringWriter.ToString().Trim().Should().Be("1) testKey1" + System.Environment.NewLine + "2) testKey2");
             }
-        }       
+        }
         [Fact]
         public void Keys_EmptySet()
         {
@@ -128,20 +132,18 @@ namespace MultiValueDictionaryLibrary.Test
                 { "testKey1",new List<string>{ "testValue1", "testValue2"}},
             };
 
-            using (var stringWriter = new StringWriter())
-            {
+            var testText = "";
+            _mockWritingService.Setup(x => x.WriteLine(It.IsAny<string>())).Callback((string text) => testText = text);
 
-                Console.SetOut(stringWriter);
+            var sut = BuildMockInstance();
 
-                var sut = BuildMockInstance();
+            //act
+            sut.Remove(testDictionary, "testKey1", "testValue2");
 
-                //act
-                sut.Remove(testDictionary, "testKey1", "testValue2");
+            //assert
+            testText.Should().Be(") Removed");
+            testDictionary.Any(x => x.Key == "testKey1").Should().BeTrue();
 
-                //assert
-                stringWriter.ToString().Trim().Should().Be(") Removed");
-                testDictionary.Any(x => x.Key == "testKey1").Should().BeTrue();
-            }
         }
         [Fact]
         public void Remove_NoValuesRemaining()
@@ -152,21 +154,19 @@ namespace MultiValueDictionaryLibrary.Test
                 { "testKey1",new List<string>{ "testValue2"}},
             };
 
-            using (var stringWriter = new StringWriter())
-            {
+            var testText = "";
+            _mockWritingService.Setup(x => x.WriteLine(It.IsAny<string>())).Callback((string text) => testText = text);
 
-                Console.SetOut(stringWriter);
+            var sut = BuildMockInstance();
 
-                var sut = BuildMockInstance();
+            //act
+            sut.Remove(testDictionary, "testKey1", "testValue2");
 
-                //act
-                sut.Remove(testDictionary, "testKey1", "testValue2");
-
-                //assert
-                stringWriter.ToString().Trim().Should().Be(") Removed");
-                testDictionary.Any(x => x.Key == "testKey1").Should().BeFalse();
-            }
+            //assert
+            testText.Should().Be(") Removed");
+            testDictionary.Any(x => x.Key == "testKey1").Should().BeFalse();
         }
+
         [Fact]
         public void Remove_NoMembers()
         {
@@ -190,7 +190,7 @@ namespace MultiValueDictionaryLibrary.Test
                 stringWriter.ToString().Trim().Should().Be(") ERROR, member does not exist.");
                 testDictionary.Any(x => x.Key == "testKey1").Should().BeTrue();
             }
-        }        
+        }
         [Fact]
         public void RemoveAll()
         {
@@ -216,7 +216,7 @@ namespace MultiValueDictionaryLibrary.Test
                 testDictionary.Any(x => x.Key == "testKey1").Should().BeFalse();
                 testDictionary.Any(x => x.Key == "testKey2").Should().BeTrue();
             }
-        }       
+        }
         [Fact]
         public void Clear()
         {
@@ -242,7 +242,7 @@ namespace MultiValueDictionaryLibrary.Test
                 testDictionary.Any(x => x.Key == "testKey1").Should().BeFalse();
                 testDictionary.Any(x => x.Key == "testKey2").Should().BeFalse();
             }
-        } 
+        }
         [Theory]
         [InlineData("testKey1", "true")]
         [InlineData("testKey3", "false")]
@@ -267,7 +267,7 @@ namespace MultiValueDictionaryLibrary.Test
 
                 //assert
                 stringWriter.ToString().Trim().Should().Be($") {result}");
-    
+
             }
         }
 

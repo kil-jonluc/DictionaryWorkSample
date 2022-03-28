@@ -1,15 +1,16 @@
-﻿using System;
+﻿using MultiValueDictionaryLibrary.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MultiValueDictionaryLibrary
 {
     public class DictionaryCommands : IDictionaryCommands
     {
-        public DictionaryCommands()
+        private readonly IWritingService _writingService;
+        public DictionaryCommands(IWritingService writingService)
         {
+            _writingService = writingService;
         }
 
         public void Add(Dictionary<string, List<string>> demoDictionary, string key, string value)
@@ -76,7 +77,7 @@ namespace MultiValueDictionaryLibrary
                 if (valueList.Any(x => x == value))
                 {
                     valueList.RemoveAll(x => x == value);
-                    Console.WriteLine(") Removed");
+                    _writingService.WriteLine(") Removed");
                 }
                 else
                 {
