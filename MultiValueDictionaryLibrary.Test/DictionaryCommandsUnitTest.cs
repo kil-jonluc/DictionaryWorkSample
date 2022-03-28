@@ -70,7 +70,7 @@ namespace MultiValueDictionaryLibrary.Test
                 sut.Keys(testDictionary);
 
                 //assert
-                stringWriter.ToString().Trim().Should().Be("testKey1" + System.Environment.NewLine + "testKey2");
+                stringWriter.ToString().Trim().Should().Be("1) testKey1" + System.Environment.NewLine + "2) testKey2");
             }
         }       
         [Fact]
@@ -116,7 +116,7 @@ namespace MultiValueDictionaryLibrary.Test
                 sut.Members(testDictionary, "testKey1");
 
                 //assert
-                stringWriter.ToString().Trim().Should().Be("testValue1" + System.Environment.NewLine + "testValue2");
+                stringWriter.ToString().Trim().Should().Be("1) testValue1" + System.Environment.NewLine + "2) testValue2");
             }
         }
         [Fact]
@@ -296,6 +296,56 @@ namespace MultiValueDictionaryLibrary.Test
 
                 //assert
                 stringWriter.ToString().Trim().Should().Be($") {result}");
+
+            }
+        }
+        [Fact]
+        public void AllMembers()
+        {
+            //arrange
+            var testDictionary = new Dictionary<string, List<string>>()
+            {
+                { "testKey1",new List<string>{ "testValue1", "testValue2"}},
+                { "testKey2",new List<string>{ "testValue1", "testValue2"}},
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+
+                Console.SetOut(stringWriter);
+
+                var sut = BuildMockInstance();
+
+                //act
+                sut.AllMembers(testDictionary);
+
+                //assert
+                stringWriter.ToString().Trim().Should().Be("1) testValue1" + System.Environment.NewLine + "2) testValue2" + System.Environment.NewLine + "3) testValue1" + System.Environment.NewLine + "4) testValue2");
+
+            }
+        }
+        [Fact]
+        public void Items()
+        {
+            //arrange
+            var testDictionary = new Dictionary<string, List<string>>()
+            {
+                { "testKey1",new List<string>{ "testValue1", "testValue2"}},
+                { "testKey2",new List<string>{ "testValue1", "testValue2"}},
+            };
+
+            using (var stringWriter = new StringWriter())
+            {
+
+                Console.SetOut(stringWriter);
+
+                var sut = BuildMockInstance();
+
+                //act
+                sut.Items(testDictionary);
+
+                //assert
+                stringWriter.ToString().Trim().Should().Be("1) testKey1: testValue1" + System.Environment.NewLine + "2) testKey1: testValue2" + System.Environment.NewLine + "3) testKey2: testValue1" + System.Environment.NewLine + "4) testKey2: testValue2");
 
             }
         }

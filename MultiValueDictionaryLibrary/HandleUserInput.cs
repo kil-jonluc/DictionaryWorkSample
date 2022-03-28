@@ -39,7 +39,7 @@ namespace MultiValueDictionaryLibrary
             switch (command.ToUpper())
             {
                 case "ADD":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 3))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 3))
                     {
                         break;
                     }
@@ -49,21 +49,21 @@ namespace MultiValueDictionaryLibrary
                     _dictionaryCommands.Keys(demoDictionary);
                     break;
                 case "MEMBERS":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 2))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 2))
                     {
                         break;
                     }
                     _dictionaryCommands.Members(demoDictionary, inputArray[1]);
                     break;
                 case "REMOVE":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 3))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 3))
                     {
                         break;
                     }
                     _dictionaryCommands.Remove(demoDictionary, inputArray[1], inputArray[2]);
                     break;
                 case "REMOVEALL":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 2))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 2))
                     {
                         break;
                     }
@@ -73,25 +73,25 @@ namespace MultiValueDictionaryLibrary
                     _dictionaryCommands.Clear(demoDictionary);
                     break;
                 case "KEYEXISTS":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 2))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 2))
                     {
                         break;
                     }
                     _dictionaryCommands.KeyExists(demoDictionary, inputArray[1]);
                     break;
                 case "MEMBEREXISTS":
-                    if (_validateUserInput.ValidateArrayLength(inputArray, 3))
+                    if (!_validateUserInput.ValidateArrayLength(inputArray, 3))
                     {
                         break;
                     }
                     _dictionaryCommands.MemberExists(demoDictionary, inputArray[1], inputArray[2]);
                     break;
-                //case "ALLMEMBERS":
-                //    _dictionaryCommands.AllMembers(demoDictionary);
-                //    break;
-                //case "ITEMS":
-                //    _dictionaryCommands.Items(demoDictionary);
-                //    break;
+                case "ALLMEMBERS":
+                    _dictionaryCommands.AllMembers(demoDictionary);
+                    break;
+                case "ITEMS":
+                    _dictionaryCommands.Items(demoDictionary);
+                    break;
                 default:
                     Console.WriteLine(") Invalid Command");
                     break;

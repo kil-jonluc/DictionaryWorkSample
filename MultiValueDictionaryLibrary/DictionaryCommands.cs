@@ -34,6 +34,7 @@ namespace MultiValueDictionaryLibrary
         }
         public void Keys(Dictionary<string, List<string>> demoDictionary)
         {
+            int count = 1;
             if (demoDictionary.Keys.Count == 0)
             {
                 Console.WriteLine(") empty set");
@@ -43,13 +44,15 @@ namespace MultiValueDictionaryLibrary
                 // Keys command console print response
                 foreach (var key in demoDictionary)
                 {
-                    Console.WriteLine(key.Key);
+                    Console.WriteLine($"{count}) {key.Key}");
+                    count++;
                 }
             }
         }
 
         public void Members(Dictionary<string, List<string>> demoDictionary, string key)
         {
+            int count = 1;
             if (DictionaryHasKey(demoDictionary, key))
             {
                 // Keys command console print response
@@ -57,7 +60,8 @@ namespace MultiValueDictionaryLibrary
                 demoDictionary.TryGetValue(key, out valueList);
                 foreach (var value in valueList)
                 {
-                    Console.WriteLine(value);
+                    Console.WriteLine($"{count}) {value}");
+                    count++;
                 }
             }
         }
@@ -90,7 +94,7 @@ namespace MultiValueDictionaryLibrary
 
         public void RemoveAll(Dictionary<string, List<string>> demoDictionary, string key)
         {
-            if(DictionaryHasKey(demoDictionary, key))
+            if (DictionaryHasKey(demoDictionary, key))
             {
                 demoDictionary.Remove(key);
                 Console.WriteLine(") Removed");
@@ -105,7 +109,7 @@ namespace MultiValueDictionaryLibrary
 
         public void KeyExists(Dictionary<string, List<string>> demoDictionary, string key)
         {
-            Console.WriteLine($") {(demoDictionary.ContainsKey(key) ? "true": "false")}");
+            Console.WriteLine($") {(demoDictionary.ContainsKey(key) ? "true" : "false")}");
         }
 
         public void MemberExists(Dictionary<string, List<string>> demoDictionary, string key, string value)
@@ -115,7 +119,7 @@ namespace MultiValueDictionaryLibrary
             {
                 List<string> valueList;
                 demoDictionary.TryGetValue(key, out valueList);
-                if(!valueList.Any(x => x == value))
+                if (!valueList.Any(x => x == value))
                 {
                     result = "false";
                 }
@@ -130,16 +134,47 @@ namespace MultiValueDictionaryLibrary
 
         public void AllMembers(Dictionary<string, List<string>> demoDictionary)
         {
-            throw new NotImplementedException();
+            int count = 1;
+            if (demoDictionary.Any(x => x.Value.Any()))
+            {
+                foreach (var key in demoDictionary)
+                {
+                    foreach (var value in key.Value)
+                    {
+                        Console.WriteLine($"{count}) {value}");
+                        count++;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine(") empty set");
+            }
         }
 
         public void Items(Dictionary<string, List<string>> demoDictionary)
         {
-            throw new NotImplementedException();
+            int count = 1;
+            if (demoDictionary.Any(x => x.Value.Any()))
+            {
+                foreach (var key in demoDictionary)
+                {
+                    foreach (var value in key.Value)
+                    {
+                        Console.WriteLine($"{count}) {key.Key}: {value}");
+                        count++;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine(") empty set");
+            }
         }
 
-  
-     
+
+
+
         private bool DictionaryHasKey(Dictionary<string, List<string>> demoDictionary, string key)
         {
             var exists = true;

@@ -26,7 +26,7 @@ namespace MultiValueDictionary
                 //the console application will run until its manually closed
                 while (true)
                 {
-                    Console.Write(">");
+                    Console.Write("> ");
 
                     //gather user input 
                     string input = Console.ReadLine();

@@ -63,7 +63,16 @@ namespace MultiValueDictionaryLibrary
         /// <param name="key"></param>
         /// <param name="value"></param>
         void MemberExists(Dictionary<string, List<string>> demoDictionary, string key, string value);
-        //void AllMembers(Dictionary<string, List<string>> demoDictionary);
-        //void Items(Dictionary<string, List<string>> demoDictionary);
+        /// <summary>
+        /// Returns all the members in the dictionary
+        /// </summary>
+        /// <param name="demoDictionary"></param>
+        void AllMembers(Dictionary<string, List<string>> demoDictionary);
+
+        /// <summary>
+        /// Returns all keys in the dictionary and all of their members. Returns nothing if there are none
+        /// </summary>
+        /// <param name="demoDictionary"></param>
+        void Items(Dictionary<string, List<string>> demoDictionary);
     }
 }
