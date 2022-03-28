@@ -11,7 +11,7 @@ namespace MultiValueDictionaryLibrary
     {
         private readonly IDictionaryCommands _dictionaryCommands;
         private readonly IValidateUserInput _validateUserInput;
-        public HandleUserInput(IDictionaryCommands dictionaryCommands, 
+        public HandleUserInput(IDictionaryCommands dictionaryCommands,
             IValidateUserInput validateUserInput)
         {
             _dictionaryCommands = dictionaryCommands;

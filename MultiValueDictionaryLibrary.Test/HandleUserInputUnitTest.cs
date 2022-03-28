@@ -39,10 +39,8 @@ namespace MultiValueDictionaryLibrary.Test
         }
 
 
-        [Theory]
-        [InlineData("ADD")]
-        [InlineData("KEYS")]
-        public void DetermineDictionaryCommand(string command)
+        [Fact]
+        public void DetermineDictionaryCommand_Keys()
         {
             //arrange
             Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>()
@@ -50,33 +48,43 @@ namespace MultiValueDictionaryLibrary.Test
                 { "testKey1", new List<string>{"testValue1" }},
                 { "testKey2", new List<string>{"testValue2" }}
             };
-            var testArray = new string[] { command, "Foo", "Bar" };
+            var testArray = new string[] { "KEYS", "Foo", "Bar" };
+            var sut = BuildMockInstance();
+
+            var keysTest = false;
+
+
+            _mockDictionaryCommands.Setup(x => x.Keys(It.IsAny<Dictionary<string, List<string>>>())).Callback(() => keysTest = true);
+
+            sut.DetermineDictionaryCommand(dictionary, testArray);
+
+            //act
+
+            //assert
+
+            keysTest.Should().BeTrue();
+        }
+        [Fact]
+        public void DetermineDictionaryCommand_ADD()
+        {
+            //arrange
+            Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>()
+            {
+                { "testKey1", new List<string>{"testValue1" }},
+                { "testKey2", new List<string>{"testValue2" }}
+            };
+            var testArray = new string[] { "ADD", "Foo", "Bar" };
             var sut = BuildMockInstance();
 
             var addTest = false;
-            var keysTest = false;
-            if (command == "ADD")
-            {
-                _mockDictionaryCommands.Setup(x => x.Add(It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<string>(), It.IsAny<string>())).Callback(() => addTest = true);
-            }
-            if (command == "KEYS")
-            {
-                _mockDictionaryCommands.Setup(x => x.Keys(It.IsAny<Dictionary<string, List<string>>>())).Callback(() => keysTest = true);
-            }
-
-            //act
+            _mockDictionaryCommands.Setup(x => x.Add(It.IsAny<Dictionary<string, List<string>>>(), It.IsAny<string>(), It.IsAny<string>())).Callback(() => addTest = true);
+           _mockValidateUserInput.Setup(x => x.ValidateArrayLength(It.IsAny<string[]>(), It.IsAny<int>())).Returns(true);
             sut.DetermineDictionaryCommand(dictionary, testArray);
 
-            //assert
-            if (command == "ADD")
-            {
-                addTest.Should().BeTrue();
-            }
-            if (command == "KEYS")
-            {
-                keysTest.Should().BeTrue();
-            }
+            //act
 
+            //assert
+                addTest.Should().BeTrue();
         }
     }
 }
