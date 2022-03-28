@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kilpa\\Documents\\SpreetailDemo\\worksample-csharp\\MultiValueDictionary.csproj": {}
+    "C:\\Users\\kilpa\\Documents\\SpreetailWorkSample\\worksample-csharp\\MultiValueDictionary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kilpa\\Documents\\SpreetailDemo\\worksample-csharp\\MultiValueDictionary.csproj": {
+    "C:\\Users\\kilpa\\Documents\\SpreetailWorkSample\\worksample-csharp\\MultiValueDictionary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kilpa\\Documents\\SpreetailDemo\\worksample-csharp\\MultiValueDictionary.csproj",
+        "projectUniqueName": "C:\\Users\\kilpa\\Documents\\SpreetailWorkSample\\worksample-csharp\\MultiValueDictionary.csproj",
         "projectName": "MultiValueDictionary",
-        "projectPath": "C:\\Users\\kilpa\\Documents\\SpreetailDemo\\worksample-csharp\\MultiValueDictionary.csproj",
+        "projectPath": "C:\\Users\\kilpa\\Documents\\SpreetailWorkSample\\worksample-csharp\\MultiValueDictionary.csproj",
         "packagesPath": "C:\\Users\\kilpa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kilpa\\Documents\\SpreetailDemo\\worksample-csharp\\obj\\",
+        "outputPath": "C:\\Users\\kilpa\\Documents\\SpreetailWorkSample\\worksample-csharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

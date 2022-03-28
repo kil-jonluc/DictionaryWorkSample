@@ -1,0 +1,12 @@
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\bin\Debug\net5.0\MultiValueDictionaryLibrary.deps.json
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\bin\Debug\net5.0\MultiValueDictionaryLibrary.dll
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\bin\Debug\net5.0\ref\MultiValueDictionaryLibrary.dll
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\bin\Debug\net5.0\MultiValueDictionaryLibrary.pdb
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.csproj.AssemblyReference.cache
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.AssemblyInfoInputs.cache
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.AssemblyInfo.cs
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.csproj.CoreCompileInputs.cache
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.dll
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\ref\MultiValueDictionaryLibrary.dll
+C:\Users\kilpa\Documents\SpreetailWorkSample\MultiValueDictionaryLibrary\obj\Debug\net5.0\MultiValueDictionaryLibrary.pdb
